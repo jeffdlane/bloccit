@@ -7,5 +7,7 @@
   <%= f.label "blah" %>
   <%= f.text_field :body %>
 
+<% if can? :update, Post %>
   <%= f.submit "Save" %>
+<% end %>
 <% end %>

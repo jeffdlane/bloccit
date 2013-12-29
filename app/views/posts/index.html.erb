@@ -1,4 +1,7 @@
 <h1>All Posts</h1>
+
+<%= link_to "New Post", new_post_path, class: 'btn btn-primary btin-mini' if can? :create, Post %>
+
 <% @post.each do |post| %>
   <div class="media">
     <div class="media-body">
