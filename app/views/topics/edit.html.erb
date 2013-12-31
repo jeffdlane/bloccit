@@ -1,0 +1,16 @@
+<h1>Edit @topic/h1>
+
+<%= form_for @topic do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <% end %>
+
+  <%= f.label :public, class: 'checkbox' do %>
+    <%= f.check_box :public %> Make Public
+  <% end %>
+
+  <%= f.submit "Save" %>
+<% end %>

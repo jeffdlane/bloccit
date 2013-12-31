@@ -1,0 +1,13 @@
+<h1>All Topics</h1>
+
+<%= link_to "New Topic", new_topic_path, class: 'btn btn-primary btin-mini' if can? :create, Topic %>
+
+<% @topic.each do |t| %>
+  <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= link_to t.name, t %>
+      </h4>
+    </div>
+  </div>
+<% end %>

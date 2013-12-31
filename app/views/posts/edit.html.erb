@@ -1,13 +1,11 @@
 <h1>Edit Post</h1>
 
-<%= form_for @post do |f| %>
+<%= form_for [@topic,@post] do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
 
-  <%= f.label "blah" %>
+  <%= f.label :body %>
   <%= f.text_field :body %>
 
-<% if can? :update, Post %>
   <%= f.submit "Save" %>
-<% end %>
 <% end %>

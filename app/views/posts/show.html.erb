@@ -3,4 +3,4 @@
 <p><%= @post.body %></p>
 
 
-<%= link_to "Edit", edit_post_path if can? :edit, @post%>
+<%= link_to "Edit", edit_topic_post_path(@topic, @post) if can? :edit, @post%>
