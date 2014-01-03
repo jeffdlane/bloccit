@@ -3,7 +3,7 @@
 <p><%= @topic.description %></p>
 
 <% @posts.each do |x| %>
-  <%= link_to x.title, [@topic, x] %>
+  <%= link_to markdown x.title, [@topic, x] %>
 <% end %>
 
 <%= link_to "Edit Topic", edit_topic_path if can? :edit, @topic %>

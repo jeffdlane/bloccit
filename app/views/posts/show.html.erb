@@ -1,6 +1,7 @@
-<h1><%= @post.title %></h1>
+<h1><%= markdown @post.title %></h1>
 
-<p><%= @post.body %></p>
-
+<div class="span8">
+  <p><%= markdown @post.body %></p>
+</div>
 
 <%= link_to "Edit", edit_topic_post_path(@topic, @post) if can? :edit, @post%>
