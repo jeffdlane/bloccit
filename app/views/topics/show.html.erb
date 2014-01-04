@@ -1,15 +1,18 @@
 <h1><%= @topic.name %></h1>
 
-<small>
-  <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %>
-  submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %><br/>
-  <%= post.comments.count %> comments
-</small>
+
 
 <p><%= @topic.description %></p>
 
-<% @posts.each do |x| %>
-  <%= link_to markdown x.title, [@topic, x] %>
+<% @posts.each do |post| %>
+  <%= link_to (markdown post.title), [@topic, post] %>
+  <small>
+  <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %>
+  submitted <%= time_ago_in_words(post.created_at) %> ago by 
+  <%= post.user.name %><br/>
+  <%= post.comments.count %> Comments
+</small><br/>
+<%= image_tag(post.image.thumb.url) if post.image? %><br/>
 <% end %>
 
 <%= link_to "Edit Topic", edit_topic_path if can? :edit, @topic %>
