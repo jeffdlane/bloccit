@@ -1,7 +1,7 @@
 require 'faker'
 
 topics = []
-15.times do
+20.times do
   topics << Topic.create(
     name: Faker::Lorem.words(rand(1..10)).join(" "),
     description: Faker::Lorem.paragraph(rand(1..3))
@@ -23,7 +23,7 @@ rand(4..10).times do
   # The `skip_confirmation!` method sets the confirmation date
   # to avoid sending an email. The `save` method updates the database.
 
-rand(5..12).times do
+15).times do
   topic = topics.first
   p = u.posts.create(
     topic: topic,

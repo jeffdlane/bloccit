@@ -16,7 +16,7 @@ end
 group :assets do
   gem 'sass-rails',   '~> 3.2.1'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'bootstrap-sass', '~> 2.3.1.0'
+  gem 'bootstrap-sass'
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -30,6 +30,8 @@ gem 'carrierwave'
 gem 'mini_magick', '~> 3.5.0'
 gem 'fog'
 gem 'figaro'
+gem 'will_paginate', '~> 3.0'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

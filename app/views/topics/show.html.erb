@@ -1,22 +1,23 @@
 <h1><%= @topic.name %></h1>
 
+<p class="lead"><%= @topic.description %></p>
 
+<%= link_to "Edit Topic", edit_topic_path if can? :edit, @topic %><br/>
 
-<p><%= @topic.description %></p>
-
+<div>
 <% @posts.each do |post| %>
   <%= link_to (markdown post.title), [@topic, post] %>
   <small>
   <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %>
-  submitted <%= time_ago_in_words(post.created_at) %> ago by 
-  <%= post.user.name %><br/>
+  <p class="text-muted">submitted <%= time_ago_in_words(post.created_at) %> ago by 
+  <%= post.user.name %></p>
   <%= post.comments.count %> Comments
 </small><br/>
 <%= image_tag(post.image.thumb.url) if post.image? %><br/>
 <% end %>
-
-<%= link_to "Edit Topic", edit_topic_path if can? :edit, @topic %>
-
-<%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-large btn-block' if can? :create, @post %>
+</div>
 
 
+<%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-primary btn-large' if can? :create, @post %>
+
+<%= will_paginate @posts %>
