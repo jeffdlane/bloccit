@@ -6,9 +6,8 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:topic_id])
     @comment = Comment.new
   end
-  end
 
-def create
+  def create
     @topic = Topic.find(params[:topic_id])
     @comment = current_user.comments.build(params[:comment])
     @post.topic = @topic
