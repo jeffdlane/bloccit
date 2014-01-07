@@ -23,7 +23,7 @@ rand(4..10).times do
   # The `skip_confirmation!` method sets the confirmation date
   # to avoid sending an email. The `save` method updates the database.
 
-15).times do
+15.times do
   topic = topics.first
   p = u.posts.create(
     topic: topic,
