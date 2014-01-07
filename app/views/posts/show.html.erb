@@ -13,3 +13,8 @@
     <%= link_to "Edit", edit_topic_post_path(@topic, @post) if can? :edit, @post%>
   </div>
 </div>
+
+<h3>Comments</h3>
+<%= render @post.comments %>
+
+<%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment } %>

@@ -1,0 +1,17 @@
+<%= form_for [topic, post, comment], html: { class: 'form-horizontal'} do |f| %>
+
+<%= render partial: 'shared/errors', locals: { object: comment } %>
+
+  <%= control_group_tag(comment.errors[:body]) do %> 
+    <%= f.label :body, "Add Comment", class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :body, rows: 8 %>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit "Save", class: 'btn' %>
+    </div>
+  </div>
+<% end %>
