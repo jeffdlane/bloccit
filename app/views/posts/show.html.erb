@@ -13,3 +13,12 @@
     <%= link_to "Edit", edit_topic_post_path(@topic, @post) if can? :edit, @post%>
   </div>
 </div>
+
+<div>
+<h3>Comments</h3>
+<% @comment.each do |comment| %>
+  <%= markdown comment.body %>
+<% end %>
+</div>
+
+<%= render partial: 'comments/form', locals: {comment: Comment.new} %>

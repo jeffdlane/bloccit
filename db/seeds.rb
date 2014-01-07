@@ -1,7 +1,7 @@
 require 'faker'
 
 topics = []
-20.times do
+5.times do
   topics << Topic.create(
     name: Faker::Lorem.words(rand(1..10)).join(" "),
     description: Faker::Lorem.paragraph(rand(1..3))
@@ -23,24 +23,29 @@ rand(4..10).times do
   # The `skip_confirmation!` method sets the confirmation date
   # to avoid sending an email. The `save` method updates the database.
 
-15).times do
+11.times do
   topic = topics.first
   p = u.posts.create(
     topic: topic,
     title: Faker::Lorem.words(rand(1..10)).join(" "),
     body: Faker::Lorem.paragraphs(rand(1..4)).join("\n"))
-  # set teh created_at to a time within the past year
-
   p.update_attribute(:created_at, Time.now - rand(600..31536000))
+    5.times do
+      c = p.comments.create(
+      body:Faker::Lorem.words(rand(5..15)).join(" "))
+      c.update_attribute(:user_id, u.id)
+      c.save
+  p.save
+  # set the created_at to a time within the past year
 
   topics.rotate!
-
-rand(3..7).times do
-  p.comments.create(
-    body: Faker::Lorem.paragraphs(rand(1..2)).join("\n"))
-    end
-  end
 end
+end
+end
+
+# rand(3..7).times do
+#   p.comments.create(
+#     body: Faker::Lorem.paragraphs(rand(1..2)).join("\n"))
 
 u = User.new(
   name: 'Admin User',
