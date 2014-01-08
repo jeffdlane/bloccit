@@ -38,4 +38,16 @@ class TopicsController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    @topic = Topic.find(params[:id])
+    name = @topic.name
+    authorize! :destroy, @topic, message: "You need to be a moderator or admin to destroy a topic."
+    if @topic.destroy
+      redirect_to topics_path, notice: "\"#{name}\" was destroyed."
+    else
+      flash[:error] = "There was an error destroying this topic."
+      render :show
+    end
+  end
 end
