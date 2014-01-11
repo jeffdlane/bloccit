@@ -1,4 +1,7 @@
 <%= form_for [topic, post, comment], html: { class: 'form-horizontal'} do |f| %>
+<%#= form_for [comment.post.topic, comment.post, comment], html: { class: 'form-horizontal'} do |f| %>
+<!-- <form action='/topics/1/posts/2/comments'>
+POST /topics/1/posts/2/comments -->
 
 <%= render partial: 'shared/errors', locals: { object: comment } %>
 
@@ -15,3 +18,8 @@
     </div>
   </div>
 <% end %>
+
+
+<!-- @user.posts.each do |post|
+  = post.body
+  = render partial: 'comments/form', locals: {comment: post.comments.new} -->

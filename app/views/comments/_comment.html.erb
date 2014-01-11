@@ -1,2 +1,2 @@
 <%= markdown comment.body %>
-<%= link_to "Delete Comment", [@topic, @post, comment], method: :delete if can? :destroy, @comment %>
+<%= link_to "Delete Comment", [comment.post.topic, comment.post, comment], method: :delete if can? :destroy, comment %>

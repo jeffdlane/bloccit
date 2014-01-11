@@ -31,6 +31,7 @@ end
     body: Faker::Lorem.paragraphs(rand(1..4)).join("\n"))
   # set the created_at to a time within the past year
   p.update_attribute(:created_at, Time.now - rand(600..31536000))
+  p.update_rank
     5.times do
       c = p.comments.create(
         body: Faker::Lorem.words(rand(5..10)).join(" "))

@@ -8,6 +8,7 @@
 
 <div>
 <% @posts.each do |post| %>
+  <%= render partial: 'votes/voter', locals: { topic: @topic, post: post} %>
   <%= link_to (markdown post.title), [@topic, post] %>
   <small>
   <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %>
@@ -18,7 +19,6 @@
 <%= image_tag(post.image.thumb.url) if post.image? %><br/>
 <% end %>
 </div>
-
 
 <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-primary btn-large' if can? :create, @post %>
 
