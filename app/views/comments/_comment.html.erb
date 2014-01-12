@@ -1,2 +1,12 @@
-<%= markdown comment.body %>
-<%= link_to "Delete Comment", [comment.post.topic, comment.post, comment], method: :delete if can? :destroy, comment %>
+<%= content_tag :div, class: 'media', id: "comment-#{comment.id}" do %>
+  <%= link_to '#', class: 'pull-left' do %>
+    <%= image_tag(comment.user.avatar.small.url) if comment.user.avatar? %>
+  <% end %>
+  <div class="media-body">
+    <small>
+      <%= comment.user.name %> commented <%= time_ago_in_words(comment.created_at) %> ago
+      <%= link_to "Delete Comment", [comment.post.topic, comment.post, comment], method: :delete if can? :destroy, comment %>
+    </small>
+    <%= markdown comment.body %>
+  </div>
+<% end %>
