@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   def index
-    @topics = Topic.paginate(page: params[:page], per_page: 10)
+    @topics = Topic.visible_to(current_user).paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -19,6 +19,7 @@ class TopicsController < ApplicationController
   end
 
   def show
+    authroize! :read, @topic, message: "You need to be signed in to do that."
     @topic = Topic.find(params[:id])
     @posts = @topic.posts.paginate(page: params[:page], per_page: 10)
   end
