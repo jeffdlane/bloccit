@@ -6,20 +6,30 @@
 
 <%= link_to "Delete Topic", @topic, method: :delete, class: 'btn btn-primary btn-small btn-danger', confirm: "Are you sure you want to delete this topic?" if can? :destroy, @topic %>
 
-<div>
-<% @posts.each do |post| %>
-  <%= render partial: 'votes/voter', locals: { topic: @topic, post: post} %>
-  <%= link_to (markdown post.title), [@topic, post] %>
-  <small>
-  <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %>
-  <p class="text-muted">submitted <%= time_ago_in_words(post.created_at) %> ago by 
-  <%= post.user.name %></p>
-  <%= post.comments.count %> Comments
-</small><br/>
-<%= image_tag(post.image.thumb.url) if post.image? %><br/>
-<% end %>
-</div>
-
 <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-primary btn-large' if can? :create, @post %>
+
+
+<!--   <% @posts.each do |post| %>
+    <div class="media">
+      <%= render partial: 'votes/voter', locals: { topic: post.topic, post: post} %>
+      <%= link_to [post.topic, post], class: 'pull-left' do %>
+        <%= image_tag(post.image.thumb.url) if post.image? %>
+      <% end %>
+      <div class="media-body">
+        <h4 class="media-heading">
+          <%= link_to (markdown post.title), [post.topic, post] %>
+        </h4>
+        <small>
+          <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %>
+          <p class="text-muted">submitted <%= time_ago_in_words(post.created_at) %> ago by 
+          <%= post.user.name %></p>
+          <%= post.comments.count %> Comments
+        </small>
+      </div>
+    </div>
+  <% end %> -->
+
+
+<%= render @posts %>
 
 <%= will_paginate @posts %>

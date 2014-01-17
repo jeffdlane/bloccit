@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_facebook_oauth(auth,signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
-    unless user
+    if not user
       pass = Devise.friendly_token[0,20]
       user = User.new(
         name: auth.extra.raw_info.name,
@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
       user.skip_confirmation!
       user.save!
     end
-    user #why is this needed?
+    #user #why is this needed?
   end
 
   ROLES = %w[member moderator admin]

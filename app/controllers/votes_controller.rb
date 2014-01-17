@@ -11,7 +11,11 @@ class VotesController < ApplicationController
     redirect_to :back
   end
 
-
+  def destroy
+    @vote.destroy!
+    redirect_to :back
+  end
+  
 private
 
   def setup
