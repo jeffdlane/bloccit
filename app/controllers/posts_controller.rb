@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_filter :setup
+  before_filter :setup, :except => [:popular]
 
   def show
     @post = Post.find(params[:id])
@@ -54,6 +54,10 @@ class PostsController < ApplicationController
       flash[:error] = "There was an error deleting this post."
       render :show
     end
+  end
+
+  def popular
+    @posts = Post.visible_to(current_user).where("posts.created_at > ?", 7.days.ago).paginate(page: params[:page], per_page:10)
   end
 
   def setup

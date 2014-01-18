@@ -24,9 +24,20 @@ class User < ActiveRecord::Base
       user.skip_confirmation!
       user.save!
     end
-    #user #why is this needed?
+    user
   end
 
+  def self.top_rated
+    self.select('users.*'). #Select all attributes of the user
+    select('COUNT(DISTINCT comments.id) AS comments_count'). #Count the comments made by the user 
+    select('COUNT(DISTINCT posts.id) AS posts_count'). #Count the posts made by the user
+    select('COUNT(DISTINCT comments.id) + COUNT(DISTINCT posts.id) AS rank'). #Add the count of comments to the count of posts
+    joins(:posts). #Ties the posts table to the users table, via the user_id
+    joins(:comments). #Ties the comments table to the users table, via the user_id
+    group('users.id'). #Instructs the db to group the results so that each user will be returned in its own row
+    order('rank DESC') #Order the results in descending order by rank
+  end
+  
   ROLES = %w[member moderator admin]
 
   def role?(base_role)
