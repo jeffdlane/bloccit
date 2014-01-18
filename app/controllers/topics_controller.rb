@@ -20,7 +20,7 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
-    @posts = @topic.posts.paginate(page: params[:page], per_page: 10)
+    @posts = @topic.posts.includes(:user).includes(:comments).paginate(page: params[:page], per_page: 10)
     authorize! :read, @topic, message: "You need to be signed in to do that."
   end
 
