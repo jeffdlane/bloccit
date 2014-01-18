@@ -9,8 +9,10 @@ group :production do
   gem 'pg'
 end
 
-group :development do
+group :development, :test do
   gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 group :assets do
