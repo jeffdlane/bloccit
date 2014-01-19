@@ -20,15 +20,14 @@ describe User do
       end
 
       @u1 = create(:user) do |user|
-        comment = user.comments.build(attributes_for(:comment))
-        comment.post = post
-        comment.save
         post = user.posts.build(attributes_for(:post)) 
         post.topic = create(:topic)
         post.save
-        comment = user.comments.build(attributes_for(:comment))
-        comment.post = post
-        comment.save
+        2.times do
+          comment = user.comments.build(attributes_for(:comment))
+          comment.post = post
+          comment.save
+        end
       end
     end
   

@@ -35,4 +35,9 @@
   <%#= render partial: 'comments/asdf', object: comment, as: :comment %>
 <%# end %>
 
-<%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment } %>
+<a href="#" class="js-show-hide" data-selector="js-new-comment">New Comment</a>
+<div class="js-new-comment" id="hide">
+
+<%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment } if can? :create, Comment %>
+
+</div>
