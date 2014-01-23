@@ -9,6 +9,8 @@ class Comment < ActiveRecord::Base
   validates :post, presence: true
   validates :user, presence: true
 
+  default_scope order('updated_at DESC')
+
 private
   def send_favorite_emails
     # for every favorite associated with post, send email

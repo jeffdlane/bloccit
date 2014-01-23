@@ -28,7 +28,9 @@
 </div>
 
 <h3 class='js-comments-count'><%= @post.comments.count %> comments</h3>
-<%= render @post.comments %>
+<div class="js-comments">
+  <%= render @post.comments %>
+</div>
 
 <%# @post.comments.each do |comment| %>
   <%#= render partial: 'comment/somment', locals: {comment: comment} %>
