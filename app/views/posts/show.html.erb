@@ -27,7 +27,7 @@
   </div>
 </div>
 
-<h3>Comments</h3>
+<h3 class='js-comments-count'><%= @post.comments.count %> comments</h3>
 <%= render @post.comments %>
 
 <%# @post.comments.each do |comment| %>
@@ -36,7 +36,7 @@
 <%# end %>
 
 <a href="#" class="js-show-hide" data-selector="js-new-comment">New Comment</a>
-<div class="js-new-comment" id="hide">
+<div class="js-new-comment stealth">
 
 <%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment } if can? :create, Comment %>
 
